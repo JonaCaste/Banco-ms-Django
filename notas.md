@@ -64,11 +64,18 @@ Encargado de traducir y filtrar (establecer una comunicación) entre la vista y 
 
 creamos `serializer.py` en `soporte/`
 
+## Vistas
+Encargadas del control del CRUD - "controlador"
+
+Por buenas practicas creamos un nuevo `urls.py` en la app `soporte/`
+y posteriromente la importamos en `urls.py` del proyecto `auth_ms`
+
 ## Creamos repo
 * Iniciamos un repo con `git init`
 * Agregamos nuestro repo a un repo remoto con `git remote add origin https://github.com/JonaCaste/Banco-ms-django`
 * Hacemos un pull para sincronizar con nuestro remoto `git pull`
+* Github crea por defecto la rama main, por eso cambiamos a dicha rama con `git checkout main`
 * Creamos nuestra staging area `git add .`
 * Creamos nuestro commit (version) con `git commit -m ""`
-* Realizamos el psuh(subir al repo remoto) con `git push remoto main`
+* Realizamos el psuh(subir al repo remoto) con `git push origin main`
 * Si no tenemos el repo(primera vez) colanmos un repo con `git clone url`

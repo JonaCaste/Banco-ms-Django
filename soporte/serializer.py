@@ -7,6 +7,11 @@ class PersonaSoporteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PQRSerializer(serializers.ModelSerializer):
+
+    persona_soporte : PersonaSoporteSerializer(read_only=True)
+        #Sobreescribimos este parametro, para no mostrar el id foraneo, si no todo el objeto de la persona
+        #read_only -> solo para lectura
+
     class Meta:
         model = PQR
 
