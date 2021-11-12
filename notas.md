@@ -144,6 +144,6 @@ Realizamos el despliegue de nuestro proyecto creada con Heroku
 * Conectar Docker de nuestro sistema a Docker de Heroku (en windows, abrir el Docker Desktop)
     * `heroku container:login`
 * Creamos la imagen (nombre del proyecto de heroku)
-    * `heroku container:push web --app banco-ms-django-db`
+    * `heroku container:push web --app banco-ms-django`
 * Ponemos a correr el contenedor (nombre del proyecto de heroku)
-    * `heroku container:release web --app banco-ms-django-db`
+    * `heroku container:release web --app banco-ms-django`
