@@ -79,3 +79,71 @@ y posteriromente la importamos en `urls.py` del proyecto `auth_ms`
 * Creamos nuestro commit (version) con `git commit -m ""`
 * Realizamos el psuh(subir al repo remoto) con `git push origin main`
 * Si no tenemos el repo(primera vez) colanmos un repo con `git clone url`
+
+# Despliegue 
+Creamos un nuevo proyecto en heroku
+
+Instalamos el complemento de Postgresql en Heroku
+* Heroku ya cuenta con docker
+
+Agregamos las credenciales de nuestra DB a `settings.py` en `auth_ms/`
+ 
+Y ahora:
+* Eliminamos nuestra base de SQL3
+* Realizamos de nuevo las migraciones
+* Creamos de nuevo el super usuario
+
+Agregamos la configuracion de heroku a nuestro proyecto Django
+*   `# Heroku`
+    `import django_heroku`
+    `django_heroku.settings(locals())`
+
+## Despliegue con Docker
+Creamos un archivo `Dockerfile`
+
+* En Heroku solo debemos realizar el archivo `Dockerfile`, ya que la imagen y el contenedor la realiza Heroku automaticamente.
+
+* Recordar que podemos utilizar los comando de Docker hub
+
+Para nuestro `Dockerfile` debemos:
+* Instalar el lenguaje: en este caso Python
+    * `FROM python:3`
+* Python funciona con una variable de entorno para mostrar lo errores
+    * `ENV PYTHONUNBUFFERED 1`
+* Crear una carpeta
+    * `RUN mkdir /users`
+* Indicarle a Docker cual es la carpeta principal
+    * `WORKDIR /users`
+* Copiar el proyecto a nuestra carpeta del contenedor
+    * `ADD . /users/`
+* Instalar las libreria
+    * `RUN pip install -r requirements.txt`
+* Exponer puertos (vienen cerrados por defecto)
+    * `EXPOSE 8000`
+* Hacemos las migraciones y ejecutamos el servidor
+    * `CMD python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:$PORT`
+    o
+    * `RUN python manage.py makemigrations`
+    * `RUN python manage.py migrate`
+    * `python manage.py runserver 0.0.0.0:$PORT`
+
+
+## Comando Docker
+* `FROM ...`        -> se usa cuando queremos importar otra imagen
+* `ENV ...`         -> cambiar una variable de entorno
+* `mkdir /...`      -> crear una carpeta
+* `RUN ...`         -> corre ese comando
+* `WORKDIR ...`     -> directorio de trabajo 
+* `ADD ... /.../`   -> agregar archivos al contenedor (que /donde/)
+* `EXPOSE ...`      -> abrir un puerto
+* `CMD ...`         -> ejecutar codigo en la terminal
+
+## Despliegue en Heroku
+Realizamos el despliegue de nuestro proyecto creada con Heroku
+* `heroku login`
+* Conectar Docker de nuestro sistema a Docker de Heroku (en windows, abrir el Docker Desktop)
+    * `heroku container:login`
+* Creamos la imagen (nombre del proyecto de heroku)
+    * `heroku container:push web --app banco-ms-django-db`
+* Ponemos a correr el contenedor (nombre del proyecto de heroku)
+    * `heroku container:release web --app banco-ms-django-db`

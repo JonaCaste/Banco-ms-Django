@@ -5,6 +5,8 @@
 
 from django.db import models
 
+from django.contrib.auth.models import User  #modelo para la relacion muchos a muchos
+
 # Create your models here.
 
 
@@ -29,3 +31,11 @@ class PQR(models.Model):
     estado = models.CharField(max_length=32)
     comentario = models.TextField(blank=True)
     creacion = models.DateField()
+
+# como hacer una relacion muchos a muchos 
+class Bank(models.Model):
+    name = models.CharField(max_length=64)
+    address = models.CharField(max_length=64)
+    users = models.ManyToManyField(User)
+
+    #migrar de nuevo
