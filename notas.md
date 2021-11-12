@@ -15,6 +15,8 @@ Creamos un espacio en nuestro computador para correr un proyecto con requerimien
     * En windows ejecutamos este comando para evitar errores `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process`
 * instalamos nuestros paquetes cn el comando `pip install -r requirements.txt`
 
+* Salimos del entorno virtual `deactivate env`
+
 ## Creamos un proyecto de Django
 Para crear nuestro proyecto ejecutamos `django-admin startproject auth_ms .`
 
