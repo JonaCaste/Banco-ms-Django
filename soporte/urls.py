@@ -1,5 +1,5 @@
 from django.urls    import path
-from .views         import PersonaSoporteListCreate, PersonaSoporteUpdateDelete, PQRListCreate, PQRUpdateDelete, BankListCreate, BankUpdateDelete
+from .views         import PersonaSoporteListCreate, PersonaSoporteUpdateDelete, PQRListCreate, PQRUpdateDelete, BankListCreate, BankUpdateDelete, UserCreate, UserRetrieve
 
 urlpatterns = [
     path('persona-soporte/',            PersonaSoporteListCreate.as_view()),
@@ -14,5 +14,9 @@ urlpatterns = [
 
     # urls banco muchos a muchos
     path('bank/',                   BankListCreate.as_view()),
-    path('bank/<pk>',               BankUpdateDelete.as_view())
+    path('bank/<pk>',               BankUpdateDelete.as_view()),
+    path('user/',                   UserRetrieve.as_view()),   
+
+    #creamos una persona soporte con info extra, de la relacion 1 a 1 del modelo
+    path('users/',                  UserCreate.as_view()),
 ]

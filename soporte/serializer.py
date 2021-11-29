@@ -23,15 +23,39 @@ class PQRSerializer(serializers.ModelSerializer):
 
 
 # User viene directamente  de Django
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['username', 'email']
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email']
 
 # serializer muchos a muchos
+# class BankSerializer(serializers.ModelSerializer):
+#     users = UserSerializer(many=True)
+#     # (many=True -> trae muchos usuarios para cada banco)
+
+#     class Meta:
+#         model = Bank
+#         fields = ['users', 'name']
+
+
+# config para recibir tokens y guardar mas infoo del modelo User de django
+# serializador de relacion uno a uno
+class UserCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
+class UserSerializer(serializers.ModelSerializer):
+    #sobreescribimos soporte
+    soporte = PersonaSoporteSerializer()
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'soporte']
+
+
 class BankSerializer(serializers.ModelSerializer):
     users = UserSerializer(many=True)
-    # (many=True -> trae muchos usuarios para cada banco)
 
     class Meta:
         model = Bank

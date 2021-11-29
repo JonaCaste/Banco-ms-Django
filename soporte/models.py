@@ -13,6 +13,13 @@ from django.contrib.auth.models import User  #modelo para la relacion muchos a m
 # nombre de la db = a la tabla
 class PersonaSoporte(models.Model):
 
+    # relacion uno a uno, para agregar info extra a User
+    # dos tablas uno a uno, una funciona con django y la otra tiene la info extra
+    # simulamos un usuario normal, con campos extra de vendedor
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name="soporte")
+    # PersonaSoporte esta unido con usuario
+    # related_name -> Usuario se une a Soporte
+
     # crear columnas
     ## id por defecto
     nombre = models.CharField(max_length=64)

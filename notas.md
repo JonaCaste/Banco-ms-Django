@@ -74,7 +74,7 @@ y posteriromente la importamos en `urls.py` del proyecto `auth_ms`
 
 ## Creamos repo
 * Iniciamos un repo con `git init`
-* Agregamos nuestro repo a un repo remoto con `git remote add origin https://github.com/JonaCaste/Banco-ms-django`
+* Agregamos nuestro repo a un repo remoto con `git remote add origin https://github.com/JonaCaste/Banco-ms-Django`
 * Hacemos un pull para sincronizar con nuestro remoto `git pull`
 * Github crea por defecto la rama main, por eso cambiamos a dicha rama con `git checkout main`
 * Creamos nuestra staging area `git add .`
@@ -139,6 +139,8 @@ Para nuestro `Dockerfile` debemos:
 * `ADD ... /.../`   -> agregar archivos al contenedor (que /donde/)
 * `EXPOSE ...`      -> abrir un puerto
 * `CMD ...`         -> ejecutar codigo en la terminal
+* `ARG ...`         -> crea una variable
+* `ENTRYPOINT [ , , ]`   -> indicamos el puento de entrada  
 
 ## Despliegue en Heroku
 Realizamos el despliegue de nuestro proyecto creada con Heroku
